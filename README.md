@@ -80,5 +80,6 @@ lib/
 git clone https://github.com/your-repo/task-manager-app.git
 
 
-2. ScreenShots":
-<img width="398" height="778" alt="1" src="https://github.com/user-attachments/assets/a2841ce4-b942-4e75-afa5-08d77cd10bbc" />
+## ScreenShots:
+<img width="398" height="778" alt="1" src="https://github.com/user-attachments/assets/4efe0eee-7096-4e46-85a6-5204e0ae7ca7" />
+
