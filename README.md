@@ -81,11 +81,4 @@ git clone https://github.com/your-repo/task-manager-app.git
 
 
 2. ScreenShots":
-<img width="317" height="656" alt="لقطة الشاشة 2026-04-30 132820" src="https://github.com/user-attachments/assets/c99b5d1a-beb3-4579-8945-79852ad327a9" />
-<img width="341" height="712" alt="لقطة الشاشة 2026-04-28 222930" src="https://github.com/user-attachments/assets/c66916d4-79e3-4f6a-ae0c-210f44e59a67" />
-<img width="352" height="727" alt="لقطة الشاشة 2026-04-28 133339" src="https://github.com/user-attachments/assets/d38ac11e-bd8a-41f1-8a1a-00f005406845" />
-<img width="397" height="803" alt="لقطة الشاشة 2026-04-27 105242" src="https://github.com/user-attachments/assets/f349cd88-c0bd-4309-9b9b-ff1d8e7f1ea6" />
-<img width="420" height="797" alt="لقطة الشاشة 2026-04-27 105221" src="https://github.com/user-attachments/assets/2932b27d-9dab-4507-af6c-23657aaed1c1" />
-<img width="391" height="802" alt="لقطة الشاشة 2026-04-27 105152" src="https://github.com/user-attachments/assets/0fea467f-7d36-420b-a76c-cb3efe70e620" />
-<img width="423" height="787" alt="لقطة الشاشة 2026-04-27 092949" src="https://github.com/user-attachments/assets/432d7b14-f58d-4b3a-a5d0-b8e92ac84f73" />
-<img width="398" height="778" alt="1" src="https://github.com/user-attachments/assets/359de08f-27dd-4b77-a264-7ad63cd83ef8" />
+<p align="center"> <img src="https://github.com/user-attachments/assets/c99b5d1a-beb3-4579-8945-79852ad327a9" width="250"/> <img src="https://github.com/user-attachments/assets/c66916d4-79e3-4f6a-ae0c-210f44e59a67" width="250"/> <img src="https://github.com/user-attachments/assets/d38ac11e-bd8a-41f1-8a1a-00f005406845" width="250"/> </p> <p align="center"> <img src="https://github.com/user-attachments/assets/f349cd88-c0bd-4309-9b9b-ff1d8e7f1ea6" width="250"/> <img src="https://github.com/user-attachments/assets/2932b27d-9dab-4507-af6c-23657aaed1c1" width="250"/> <img src="https://github.com/user-attachments/assets/0fea467f-7d36-420b-a76c-cb3efe70e620" width="250"/> </p> <p align="center"> <img src="https://github.com/user-attachments/assets/432d7b14-f58d-4b3a-a5d0-b8e92ac84f73" width="250"/> <img src="https://github.com/user-attachments/assets/359de08f-27dd-4b77-a264-7ad63cd83ef8" width="250"/> </p> ```
