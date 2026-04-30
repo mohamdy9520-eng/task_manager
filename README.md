@@ -1,6 +1,6 @@
 # 📱 Task Manager App (Flutter + Firebase)
 
-A scalable task management application built with Flutter and Firebase.
+A scalable and real-time Task Management mobile application built with Flutter and Firebase, designed with clean UI and modular architecture in mind.
 
 This project is part of my learning journey toward building production-ready applications, focusing on real-time data handling, authentication, and scalable architecture practices.
 
@@ -75,12 +75,40 @@ lib/
 
 ## 🔥 Setup Instructions
 
-1. Clone repository:
+### 1. Clone the repository
+
 ```bash
-git clone https://github.com/your-repo/task-manager-app.git
+git clone https://github.com/mohamdy9520-eng/task_manager.git
+cd task_manager
 ```
 
----
+### 2. Install dependencies
+
+```bash
+flutter pub get
+```
+
+### 3. Run the app
+
+```bash
+flutter run
+```
+
+### 4. Setup Firebase
+
+* Add `google-services.json` inside:
+
+```
+android/app/
+```
+
+* Add `GoogleService-Info.plist` inside:
+
+```
+ios/Runner/
+```
+
+* Make sure Firebase is initialized in `main.dart`
 
 ## 📸 Screenshots
 
