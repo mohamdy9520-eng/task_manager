@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../../../core/services/firestore_service.dart';
 import '../../../onboarding/presentation/widgets/task_card/task_card.dart';
@@ -54,7 +53,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           children: [
             _buildHeader(),
             _buildDaySelector(),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Expanded(child: _buildTasks()),
           ],
         ),
