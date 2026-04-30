@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:task_manager_app/features/auth/widgets/SignUpTextWidget.dart';
-
 import '../../../constants/app_colors/text_style.dart';
 import '../../../core/routing/app_router.dart';
 import '../cubit/auth_cubit.dart';
@@ -68,14 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   SizedBox(height: 20.h),
 
-                  const Text(
+                  Text(
                     "𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓑𝓪𝓬𝓴",
                     style: AppTextStyles.headers,
                   ),
 
                   SizedBox(height: 10.h),
 
-                  const Text(
+                  Text(
                     "𝓛𝓸𝓰𝓲𝓷",
                     style: AppTextStyles.title,
                   ),
@@ -94,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 15),
+                  SizedBox(height: 15.h),
 
                   TextField(
                     controller: passwordController,
@@ -104,16 +103,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 25),
+                  SizedBox(height: 25.h),
 
                   SizedBox(
                     width: double.infinity,
-                    height: 50,
+                    height: 50.h,
                     child: ElevatedButton(
                       onPressed: isLoadingCubit
                           ? null
@@ -131,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   SizedBox(height: 20.h),
 
-                  const Text("OR", style: AppTextStyles.small),
+                  Text("OR", style: AppTextStyles.small),
 
                   SizedBox(height: 20.h),
 
@@ -145,11 +144,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             context.read<AuthCubit>().signInWithGoogle();
                           },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            padding: EdgeInsets.symmetric(vertical: 14.h),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(color: const Color(0xff9E9E9E)),
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(12.r),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -176,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             context.read<AuthCubit>().signInWithFacebook();
                           },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            padding: EdgeInsets.symmetric(vertical: 14.h),
                             decoration: BoxDecoration(
                               color: const Color(0xFF1877F2),
                               border: Border.all(color: const Color(0xff9E9E9E)),

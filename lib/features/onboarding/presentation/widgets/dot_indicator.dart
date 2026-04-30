@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class DotIndicator extends StatelessWidget {
@@ -10,12 +11,12 @@ class DotIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 4),
+      margin: EdgeInsets.symmetric(horizontal: 4.w),
       width: isActive ? 20 : 8,
-      height: 8,
+      height: 8.h,
       decoration: BoxDecoration(
         color: isActive ? AppColors.primary : Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
       ),
     );
   }

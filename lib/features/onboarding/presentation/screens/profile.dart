@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -21,7 +22,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController nameController = TextEditingController();
   final FirestoreService firestore = FirestoreService();
 
-  // ================= INIT =================
   void _setNameOnce(String name) {
     if (nameController.text.isEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -30,7 +30,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  // ================= PICK IMAGE =================
   Future<void> _pickImage(ImageSource source) async {
     Navigator.pop(context);
 
@@ -46,7 +45,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final user = FirebaseAuth.instance.currentUser;
       if (user == null) return;
 
-      /// ✅ اسم صورة unique
       final ref = FirebaseStorage.instance
           .ref()
           .child('profile_photos/${user.uid}_${DateTime.now().millisecondsSinceEpoch}.jpg');
@@ -55,14 +53,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       final photoUrl = await ref.getDownloadURL();
 
-      /// 🔥 حفظ اللينك في Firestore
       await firestore.updateProfilePhoto(photoUrl);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Profile updated ✅")),
+        const SnackBar(content: Text("Profile updated")),
       );
     } catch (e) {
-      /// ❌ تجاهل error object-not-found
       if (e.toString().contains('object-not-found')) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -94,7 +90,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // ================= SAVE NAME =================
   Future<void> _saveName() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
@@ -102,11 +97,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await firestore.updateUserName(nameController.text);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Name updated ✅")),
+      const SnackBar(content: Text("Name updated")),
     );
   }
 
-  // ================= AVATAR =================
   Widget _avatar(String? url) {
     return Stack(
       children: [
@@ -116,23 +110,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: localImage != null
                 ? Image.file(
               localImage!,
-              width: 120,
-              height: 120,
+              width: 120.w,
+              height: 120.h,
               fit: BoxFit.cover,
             )
                 : (url != null && url.isNotEmpty)
                 ? Image.network(
               url,
-              width: 120,
-              height: 120,
+              width: 120.w,
+              height: 120.h,
               fit: BoxFit.cover,
 
-              /// ✅ يمنع الكراش
               errorBuilder: (_, __, ___) {
-                return const Icon(Icons.person, size: 60);
+                return Icon(Icons.person, size: 60.sp);
               },
             )
-                : const Icon(Icons.person, size: 60),
+                : Icon(Icons.person, size: 60.sp),
           ),
         ),
 
@@ -141,10 +134,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           right: 0,
           child: GestureDetector(
             onTap: _showPicker,
-            child: const CircleAvatar(
-              radius: 18,
+            child: CircleAvatar(
+              radius: 18.r,
               backgroundColor: Colors.blue,
-              child: Icon(Icons.camera_alt, color: Colors.white, size: 18),
+              child: Icon(Icons.camera_alt, color: Colors.white, size: 18.sp),
             ),
           ),
         ),
@@ -157,7 +150,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // ================= BUILD =================
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
@@ -187,11 +179,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
                   _avatar(photo),
 
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.h),
 
                   TextField(
                     controller: nameController,
@@ -201,14 +193,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10.h),
 
                   ElevatedButton(
                     onPressed: _saveName,
                     child: const Text("Save Name"),
                   ),
 
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
                   ListTile(
                     title: const Text("Email"),

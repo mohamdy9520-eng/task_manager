@@ -16,6 +16,3 @@ Future<List<Photo>> fetchPhotos() async {
   }
 }
 
-//الملف ده وظيفته بس:
-//  يجيب البيانات من الـ API
-//  ويرجع List صور

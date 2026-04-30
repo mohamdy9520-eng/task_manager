@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_manager_app/core/services/firestore_service.dart';
 
 Widget customGreeting() {
@@ -23,20 +24,18 @@ Widget customGreeting() {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ✅ الاسم الديناميكي
               Text(
                 "Hi $userName.",
-                style: const TextStyle(
-                  fontSize: 28,
+                style: TextStyle(
+                  fontSize: 28.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
-              // ✅ عدد التاسكات الديناميكي
+              SizedBox(height: 8.h),
               Text(
                 "$pendingCount Tasks are pending",
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: 14.sp,
                   color: Colors.grey,
                 ),
               ),

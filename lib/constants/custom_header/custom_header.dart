@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:task_manager_app/core/services/firestore_service.dart';
 
@@ -7,10 +8,9 @@ Widget customHeader() {
   final firestore = FirestoreService();
   final now = DateTime.now();
 
-  // ✅ التاريخ الديناميكي
-  final dayName = DateFormat('EEEE').format(now); // Monday
-  final dayNumber = DateFormat('d').format(now); // 29
-  final monthName = DateFormat('MMMM').format(now); // April
+  final dayName = DateFormat('EEEE').format(now);
+  final dayNumber = DateFormat('d').format(now);
+  final monthName = DateFormat('MMMM').format(now);
 
   return StreamBuilder<DocumentSnapshot>(
     stream: firestore.getUserProfile(),
@@ -28,19 +28,17 @@ Widget customHeader() {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ✅ اليوم الديناميكي
               Text(
                 dayName,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: 14.sp,
                   color: Colors.grey,
                 ),
               ),
-              // ✅ التاريخ الديناميكي
               Text(
                 "$dayNumber $monthName",
-                style: const TextStyle(
-                  fontSize: 24,
+                style:  TextStyle(
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -48,25 +46,22 @@ Widget customHeader() {
           ),
           Row(
             children: [
-              // ✅ زرار البحث
               Container(
-                width: 40,
-                height: 40,
+                width: 40.w,
+                height: 40.h,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200,
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.search, color: Colors.grey),
               ),
-              const SizedBox(width: 10),
-              // ✅ صورة البروفايل الديناميكية
+              SizedBox(width: 10.w),
               GestureDetector(
                 onTap: () {
-                  // هنروح للبروفايل لما ندوس على الصورة
-                  // ممكن تضيف Navigation هنا لو عايز
+
                 },
                 child: CircleAvatar(
-                  radius: 20,
+                  radius: 20.r,
                   backgroundColor: Colors.grey.shade300,
                   backgroundImage: photoUrl != null && photoUrl.isNotEmpty
                       ? NetworkImage(photoUrl)

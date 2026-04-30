@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -59,7 +59,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() => isLoading = true);
 
     try {
-      // ✅ إنشاء حساب في Firebase Auth
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
@@ -67,10 +66,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       final user = credential.user;
       if (user != null) {
-        // ✅ رفع صورة البروفايل
         final photoUrl = await _uploadImage(user.uid);
 
-        // ✅ حفظ بيانات المستخدم في Firestore
         await firestore.saveUserProfile(
           uid: user.uid,
           name: nameController.text.trim(),
@@ -78,7 +75,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           photoUrl: photoUrl,
         );
 
-        // ✅ تحديث displayName في Firebase Auth
         await user.updateDisplayName(nameController.text.trim());
         if (photoUrl != null) {
           await user.updatePhotoURL(photoUrl);
@@ -104,28 +100,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
-              // ✅ صورة البروفايل
               GestureDetector(
                 onTap: _pickImage,
                 child: CircleAvatar(
-                  radius: 50,
+                  radius: 50.r,
                   backgroundColor: Colors.grey.shade300,
                   backgroundImage: _imageFile != null ? FileImage(_imageFile!) : null,
                   child: _imageFile == null
-                      ? const Icon(Icons.camera_alt, size: 40, color: Colors.grey)
+                      ? Icon(Icons.camera_alt, size: 40.sp, color: Colors.grey)
                       : null,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               const Text(
                 "Tap to add photo",
                 style: TextStyle(color: Colors.grey),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
-              // ✅ الاسم
               TextField(
                 controller: nameController,
                 decoration: const InputDecoration(
@@ -134,9 +128,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
-              // ✅ الإيميل
               TextField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -146,9 +139,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
-              // ✅ الباسورد
               TextField(
                 controller: passwordController,
                 obscureText: true,
@@ -158,12 +150,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
-              // ✅ زرار التسجيل
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 50.h,
                 child: ElevatedButton(
                   onPressed: isLoading ? null : _register,
                   style: ElevatedButton.styleFrom(
@@ -172,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   child: isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text("Register", style: TextStyle(fontSize: 16)),
+                      : Text("Register", style: TextStyle(fontSize: 16.sp)),
                 ),
               ),
             ],

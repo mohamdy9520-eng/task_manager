@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../../../core/services/firestore_service.dart';
@@ -61,18 +62,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
     );
   }
 
-  // ✅ HEADER ديناميكي مع الشهر والسنة
   Widget _buildHeader() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             "${monthNames[selectedDay.month - 1]} ${selectedDay.year}",
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
           ),
-          // ✅ صورة البروفايل الديناميكية من Firebase
           StreamBuilder<DocumentSnapshot>(
             stream: firestore.getUserProfile(),
             builder: (context, snapshot) {
@@ -85,14 +84,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
               if (photoUrl != null && photoUrl.isNotEmpty) {
                 return CircleAvatar(
-                  radius: 20,
+                  radius: 20.r,
                   backgroundColor: Colors.grey.shade300,
                   backgroundImage: NetworkImage(photoUrl),
                   onBackgroundImageError: (_, __) {},
                 );
               } else {
                 return CircleAvatar(
-                  radius: 20,
+                  radius: 20.r,
                   backgroundColor: Colors.grey.shade300,
                   child: const Icon(Icons.person, color: Colors.grey),
                 );
@@ -111,7 +110,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     });
 
     return SizedBox(
-      height: 90,
+      height: 90.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: days.length,
@@ -131,18 +130,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              width: 70,
+              margin: EdgeInsets.symmetric(horizontal: 8.w),
+              width: 70.w,
               decoration: BoxDecoration(
                 color: isPast
                     ? Colors.grey.shade300
                     : (isSelected ? Colors.deepPurple : Colors.white),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
                 boxShadow: [
                   if (isSelected && !isPast)
                     BoxShadow(
                       color: Colors.deepPurple.withOpacity(0.4),
-                      blurRadius: 10,
+                      blurRadius: 10.r,
                     )
                 ],
               ),
@@ -152,7 +151,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   Text(
                     "${day.day}",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       color: isPast
                           ? Colors.grey
                           : (isSelected ? Colors.white : Colors.black),
@@ -169,9 +168,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                   if (hasTasks)
                     Container(
-                      margin: const EdgeInsets.only(top: 5),
-                      width: 6,
-                      height: 6,
+                      margin: EdgeInsets.only(top: 5.h),
+                      width: 6.w,
+                      height: 6.h,
                       decoration: BoxDecoration(
                         color: isPast
                             ? Colors.grey
@@ -223,16 +222,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
         });
 
         if (filtered.isEmpty) {
-          return const Center(
+          return Center(
             child: Text(
               "No tasks for this day",
-              style: TextStyle(color: Colors.grey, fontSize: 16),
+              style: TextStyle(color: Colors.grey, fontSize: 16.sp),
             ),
           );
         }
 
         return ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           itemCount: filtered.length,
           itemBuilder: (context, index) {
             final task = filtered[index];
@@ -247,25 +246,25 @@ class _CalendarScreenState extends State<CalendarScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 60,
+                  width: 60.w,
                   child: Text(
                     data["startTime"],
-                    style: const TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 12.sp),
                   ),
                 ),
                 Column(
                   children: [
                     Container(
-                      width: 10,
-                      height: 10,
+                      width: 10.w,
+                      height: 10.h,
                       decoration: BoxDecoration(
                         color: _getStatusColor(status),
                         shape: BoxShape.circle,
                       ),
                     ),
                     Container(
-                      width: 2,
-                      height: 80,
+                      width: 2.w,
+                      height: 80.h,
                       color: Colors.deepPurple.withOpacity(0.3),
                     ),
                   ],
@@ -316,11 +315,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
+              Text(
                 "Task Options",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               ListTile(
                 leading: const Icon(Icons.edit, color: Colors.deepPurple),
                 title: const Text("Change Status"),
@@ -340,7 +339,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   );
                 },
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
             ],
           ),
         );
@@ -358,8 +357,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
       builder: (context) {
         return Container(
@@ -367,17 +366,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
+              Text(
                 "Select Status",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               ...statuses.map((status) {
                 final isSelected = status['value'] == currentStatus;
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundColor: status['color'] as Color,
-                    radius: 8,
+                    radius: 8.r,
                   ),
                   title: Text(status['label'] as String),
                   trailing: isSelected ? const Icon(Icons.check, color: Colors.deepPurple) : null,

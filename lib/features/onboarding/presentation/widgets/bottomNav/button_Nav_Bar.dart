@@ -18,13 +18,13 @@ Widget buttonNavBar({
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey,
 
-      selectedIconTheme: const IconThemeData(
-        size: 28,
+      selectedIconTheme: IconThemeData(
+        size: 28.sp,
         color: Colors.blue,
       ),
 
-      unselectedIconTheme: const IconThemeData(
-        size: 24,
+      unselectedIconTheme:  IconThemeData(
+        size: 24.sp,
         color: Colors.grey,
       ),
 

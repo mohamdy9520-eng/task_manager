@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:task_manager_app/core/services/firestore_service.dart';
-
-import '../widgets/bottomNav/button_Nav_Bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final firestore = FirestoreService();
 
-  int currentIndex = 0; // ✅ مهم
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ================= HOME CONTENT =================
   Widget _homeContent() {
     return SafeArea(
       child: Padding(
@@ -34,11 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildDynamicHeader(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               _buildDynamicGreeting(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               _buildDynamicMainCard(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               _buildDynamicMonthlyPreview(),
             ],
           ),
@@ -47,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ================= HEADER =================
   Widget _buildDynamicHeader() {
     final now = DateTime.now();
     final dayName = DateFormat('EEEE').format(now);
@@ -73,15 +70,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(dayName, style: const TextStyle(color: Colors.grey)),
                 Text(
                   "$dayNumber $monthName",
-                  style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold),
+                  style:  TextStyle(
+                      fontSize: 24.sp, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             Row(
               children: [
                 const Icon(Icons.search, color: Colors.grey),
-                const SizedBox(width: 10),
+                SizedBox(width: 10.w),
                 _buildProfileAvatar(photoUrl),
               ],
             ),
@@ -94,17 +91,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildProfileAvatar(String? photoUrl) {
     if (photoUrl != null && photoUrl.isNotEmpty) {
       return CircleAvatar(
-        radius: 20,
+        radius: 20.r,
         backgroundImage: NetworkImage(photoUrl),
       );
     }
-    return const CircleAvatar(
-      radius: 20,
+    return CircleAvatar(
+      radius: 20.r,
       child: Icon(Icons.person),
     );
   }
 
-  // ================= GREETING =================
   Widget _buildDynamicGreeting() {
     return StreamBuilder<DocumentSnapshot>(
       stream: firestore.getUserProfile(),
@@ -126,8 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   "Hi $name.",
-                  style: const TextStyle(
-                      fontSize: 28, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 28.sp, fontWeight: FontWeight.bold),
                 ),
                 Text("$count Tasks are pending",
                     style: const TextStyle(color: Colors.grey)),
@@ -139,7 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ================= MAIN CARD =================
   Widget _buildDynamicMainCard() {
     return StreamBuilder<QuerySnapshot>(
       stream: firestore.getTasks(),
@@ -169,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             gradient: const LinearGradient(
               colors: [Color(0xFF6D5DF6), Color(0xFF46A0F0)],
             ),
@@ -198,7 +193,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ================= MONTHLY PREVIEW =================
   Widget _buildDynamicMonthlyPreview() {
     return StreamBuilder<QuerySnapshot>(
       stream: firestore.getTasks(),
@@ -222,17 +216,17 @@ class _HomeScreenState extends State<HomeScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Monthly Preview",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
+             Text("Monthly Preview",
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+            SizedBox(height: 16.h),
 
             GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              childAspectRatio: 1.1, // 👈 يكبر الحجم شوية
+              mainAxisSpacing: 12.h,
+              crossAxisSpacing: 12.w,
+              childAspectRatio: 1.1,
               children: [
                 _box(done, "Done", Colors.green),
                 _box(progress, "In Progress", Colors.orange),
@@ -250,18 +244,18 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("$count",
-                style: const TextStyle(
-                    fontSize: 30,
+                style:  TextStyle(
+                    fontSize: 30.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.bold)),
-            const SizedBox(height: 5),
+             SizedBox(height: 5.h),
             Text(label, style: const TextStyle(color: Colors.white)),
           ],
         ),

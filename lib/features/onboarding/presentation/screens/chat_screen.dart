@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -11,7 +12,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController controller = TextEditingController();
 
   List<Map<String, dynamic>> messages = [
-    {"text": "Hey 👋", "isMe": false},
+    {"text": "Hey", "isMe": false},
     {"text": "Hello! How are you?", "isMe": true},
     {"text": "I'm good, what about you?", "isMe": false},
   ];
@@ -52,23 +53,23 @@ class _ChatScreenState extends State<ChatScreen> {
                   alignment:
                   isMe ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 10,
+                    margin: EdgeInsets.only(bottom: 10.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 14.w,
+                      vertical: 10.h,
                     ),
                     decoration: BoxDecoration(
                       color: isMe ? Colors.blue : Colors.white,
                       borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(12),
-                        topRight: const Radius.circular(12),
+                        topLeft: Radius.circular(12.r),
+                        topRight: Radius.circular(12.r),
                         bottomLeft: Radius.circular(isMe ? 12 : 0),
                         bottomRight: Radius.circular(isMe ? 0 : 12),
                       ),
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           color: Colors.black12,
-                          blurRadius: 4,
+                          blurRadius: 4.r,
                         )
                       ],
                     ),
@@ -76,7 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       msg["text"],
                       style: TextStyle(
                         color: isMe ? Colors.white : Colors.black,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     ),
                   ),
@@ -85,15 +86,14 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
 
-          // Input field
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
-                  blurRadius: 10,
+                  blurRadius: 10.r,
                 )
               ],
             ),
@@ -107,13 +107,13 @@ class _ChatScreenState extends State<ChatScreen> {
                       filled: true,
                       fillColor: const Color(0xFFF0F0F0),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         borderSide: BorderSide.none,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10.w),
 
                 GestureDetector(
                   onTap: sendMessage,
@@ -123,10 +123,10 @@ class _ChatScreenState extends State<ChatScreen> {
                       color: Colors.blue,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.send,
                       color: Colors.white,
-                      size: 18,
+                      size: 18.sp,
                     ),
                   ),
                 ),

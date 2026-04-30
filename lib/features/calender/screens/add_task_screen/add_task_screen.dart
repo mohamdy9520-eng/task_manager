@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/services/firestore_service.dart';
 
 class AddTaskScreen extends StatefulWidget {
@@ -57,7 +58,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         status: selectedStatus,
       );
 
-      // 👇 يرجع بعد الحفظ
       Navigator.pop(context, true);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -80,7 +80,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// TITLE
               TextField(
                 controller: titleController,
                 decoration: const InputDecoration(
@@ -89,9 +88,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
-              /// DATE
+
               ElevatedButton.icon(
                 onPressed: () async {
                   final picked = await showDatePicker(
@@ -110,9 +109,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
-              /// TIME
               Row(
                 children: [
                   Expanded(
@@ -135,7 +133,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                           if (selectedDateTime.isBefore(now)) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("مينفعش تختار وقت في الماضي")),
+                              const SnackBar(content: Text("You can't choose a time in the past")),
                             );
                             return;
                           }
@@ -155,7 +153,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                   ),
 
-                  const SizedBox(width: 10),
+                  SizedBox(width: 10.w),
 
                   Expanded(
                     child: ElevatedButton.icon(
@@ -187,7 +185,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           if (end.isBefore(start)) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text("وقت النهاية لازم يكون بعد البداية"),
+                                content: Text("The end time must be after the start"),
                               ),
                             );
                             return;
@@ -207,11 +205,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ],
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
-              /// COLORS
               const Text("Color:", style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -224,11 +221,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ],
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
-              /// STATUS
               const Text("Status:", style: TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
               Wrap(
                 spacing: 10,
@@ -257,12 +253,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 }).toList(),
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
 
-              /// SAVE BUTTON
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 50.h,
                 child: ElevatedButton(
                   onPressed: _saveTask,
                   style: ElevatedButton.styleFrom(
@@ -284,9 +279,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       onTap: () => setState(() => selectedColor = color),
       child: CircleAvatar(
         backgroundColor: color,
-        radius: 20,
+        radius: 20.r,
         child: selectedColor == color
-            ? const Icon(Icons.check, color: Colors.white, size: 20)
+            ? Icon(Icons.check, color: Colors.white, size: 20.sp)
             : null,
       ),
     );

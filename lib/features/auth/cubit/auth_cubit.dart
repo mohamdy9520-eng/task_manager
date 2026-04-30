@@ -10,7 +10,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // ================= LOGIN =================
   Future<void> login({
     required String email,
     required String password,
@@ -31,7 +30,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  // ================= REGISTER =================
   Future<void> register({
     required String email,
     required String password,
@@ -52,7 +50,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  // ================= GOOGLE =================
   Future<void> signInWithGoogle() async {
     emit(AuthLoading());
 
@@ -79,7 +76,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  // ================= FACEBOOK =================
   Future<void> signInWithFacebook() async {
     emit(AuthLoading());
 
@@ -102,7 +98,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  // ================= LOGOUT =================
   Future<void> logout() async {
     await _auth.signOut();
     await GoogleSignIn().signOut();

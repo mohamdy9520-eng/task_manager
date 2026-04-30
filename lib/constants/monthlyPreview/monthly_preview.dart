@@ -6,7 +6,7 @@ Widget monthlyPreview() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const Text(
+      Text(
         "Monthly Preview",
         style: AppTextStyles.body,
       ),

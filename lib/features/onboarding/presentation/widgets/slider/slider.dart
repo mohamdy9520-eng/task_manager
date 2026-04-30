@@ -21,7 +21,7 @@ class CustomImageSlider extends StatelessWidget {
       onPageChanged: onPageChanged,
       itemCount: images.length,
       itemBuilder: (context, index) {
-        return Stack(
+         Stack(
           children: [
             CachedNetworkImage(
               imageUrl: images[index],

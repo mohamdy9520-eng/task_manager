@@ -15,17 +15,14 @@ Widget mainCard() {
       String timeText = "Now";
 
       if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-        // ✅ جلب أقرب تاسك (أول واحد في القائمة)
         final tasks = snapshot.data!.docs;
         final now = DateTime.now();
 
-        // فلترة التاسكات اللي لسه مجتش وقتها
         final upcomingTasks = tasks.where((task) {
           final data = task.data() as Map<String, dynamic>;
           final date = DateTime.parse(data['date']);
           final startTime = data['startTime'] as String;
 
-          // تحويل الوقت لـ DateTime
           final timeParts = startTime.split(':');
           final hour = int.parse(timeParts[0]);
           final minute = int.parse(timeParts[1].split(' ')[0]);
@@ -47,7 +44,6 @@ Widget mainCard() {
           subtitle = data['startTime'] ?? "";
           timeText = "Upcoming";
         } else {
-          // لو مفيش تاسكات جاية، نعرض آخر تاسك
           final lastTask = tasks.first;
           final data = lastTask.data() as Map<String, dynamic>;
           title = data['title'] ?? "Task";
@@ -61,7 +57,7 @@ Widget mainCard() {
         height: 83.h,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           gradient: const LinearGradient(
             colors: [Color(0xFF6D5DF6), Color(0xFF46A0F0)],
           ),

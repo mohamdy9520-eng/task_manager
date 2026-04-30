@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // ================= TASKS =================
   Future<void> addTask({
     required String title,
     required DateTime date,
@@ -66,7 +65,6 @@ class FirestoreService {
     });
   }
 
-  // ================= USER PROFILE =================
 
   Future<void> saveUserProfile({
     required String uid,

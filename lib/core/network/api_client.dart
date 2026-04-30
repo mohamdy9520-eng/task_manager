@@ -6,7 +6,7 @@ class ApiClient {
   ApiClient() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "https://your-api-url.com", // 👈 هتغيره
+        baseUrl: "https://your-api-url.com",
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         headers: {
@@ -16,7 +16,6 @@ class ApiClient {
     );
   }
 
-  // GET
   Future<Response> get(String path) async {
     try {
       return await dio.get(path);
@@ -25,7 +24,6 @@ class ApiClient {
     }
   }
 
-  // POST
   Future<Response> post(String path, dynamic data) async {
     try {
       return await dio.post(path, data: data);

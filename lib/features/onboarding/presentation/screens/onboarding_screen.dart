@@ -108,8 +108,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    spreadRadius: 2,
+                    blurRadius: 10.r,
+                    spreadRadius: 2.r,
                   ),
                 ],
               ),
@@ -166,7 +166,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           context, AppRouter.login
                         );
                       },
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           "Get Started",
                           style:AppTextStyles.primaryText
